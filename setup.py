@@ -7,7 +7,7 @@ setup(
 	description='A Python library for visualizing and inspecting data structures',
 	author='Matteo Sandrin',
 	license='MIT',
-	install_requires=[],
+	install_requires=['graphviz'],
 	setup_requires=['pytest-runner'],
 	tests_require=['pytest'],
 	test_suite='tests',
