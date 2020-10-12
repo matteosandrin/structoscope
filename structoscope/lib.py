@@ -13,6 +13,11 @@ class Scope:
         tempFolder = os.environ['TMPDIR']
 
         graph = Digraph('list_graph', directory=tempFolder, node_attr={ 'shape' : 'none' })
+        graph.node('node0', self._getLabelForList(data))
+        graph.edges([])
+        graph.view()
+
+    def _getLabelForList(self, data):
         nodeLabelTemplate = '''<
         <TABLE ALIGN="CENTER" BORDER="1">
             <TR>
@@ -23,10 +28,11 @@ class Scope:
             </TR>
         </TABLE>
         >'''
-        indices = '\n'.join(['<TD>{}</TD>'.format(i) for i in range(len(data))])
-        values = '\n'.join(['<TD>{}</TD>'.format(v) for v in data])
-        nodeLabel = nodeLabelTemplate.format(indices, values)
+        indices = ''.join(['<TD>{}</TD>'.format(self._toStr(i)) for i in range(len(data))])
+        values = ''.join(['<TD>{}</TD>'.format(self._toStr(v)) for v in data])
+        return nodeLabelTemplate.format(indices, values)
 
-        graph.node('node0', nodeLabel)
-        graph.edges([])
-        graph.view()
+    def _toStr(self, value):
+        if isinstance(value, str):
+            return '"{}"'.format(value)
+        return str(value)
