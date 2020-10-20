@@ -1,0 +1,12 @@
+[flake8]
+exclude = 
+    .git,
+    __pycache__,
+    build,
+    dist
+    structoscope/test.py,
+per-file-ignores =
+    # line too long
+    setup.py: E501,
+    # import unused
+    __init__.py: F401,
