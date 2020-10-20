@@ -1,17 +1,17 @@
 from structoscope import Scope
 
+
 def test_Scope_getLabelForList_empty():
     s = Scope()
     assert s._getLabelForList([]) == '''<
         <TABLE ALIGN="CENTER" BORDER="1">
             <TR>
-                
             </TR>
             <TR>
-                
             </TR>
         </TABLE>
         >'''
+
 
 def test_Scope_getLabelForList_withints():
     s = Scope()
@@ -26,6 +26,7 @@ def test_Scope_getLabelForList_withints():
         </TABLE>
         >'''
 
+
 def test_Scope_getLabelForList_withstrings():
     s = Scope()
     assert s._getLabelForList(['a', 'b', 'c']) == '''<
@@ -39,12 +40,14 @@ def test_Scope_getLabelForList_withstrings():
         </TABLE>
         >'''
 
+
 def test_Scope_toStr_withint():
     s = Scope()
     assert s._toStr(0) == '0'
     assert s._toStr(1) == '1'
     assert s._toStr(123) == '123'
     assert s._toStr(-123) == '-123'
+
 
 def test_Scope_toStr_withstring():
     s = Scope()
