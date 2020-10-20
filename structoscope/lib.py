@@ -29,7 +29,7 @@ class Scope:
        CELLSPACING="0"
        CELLPADDING="4">
     <TR>
-        <TD COLSPAN="{}"><B>{}</B></TD>
+<TD COLSPAN="{}"><B>{}</B></TD>
     </TR>
     <TR>
 {}
@@ -38,13 +38,13 @@ class Scope:
 {}
     </TR>
 </TABLE>
-        >'''
+>'''
         cellTemp = '<TD>{}</TD>'
         indices = [cellTemp.format(self._toStr(i)) for i in range(len(data))]
         indices = ''.join(indices)
         values = [cellTemp.format(self._toStr(v)) for v in data]
         values = ''.join(values)
-        return nodeLabelTemplate.format(len(values), name, indices, values)
+        return nodeLabelTemplate.format(len(data), name, indices, values)
 
     def _toStr(self, value):
         if isinstance(value, str):
