@@ -2,6 +2,6 @@
 __pycache__
 build
 dist
-structoscope/test.py
+structoscope/example.py
 .vscode
 *.code-workspace

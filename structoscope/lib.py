@@ -4,6 +4,27 @@ import io
 from PIL import Image
 import matplotlib.pyplot as plt
 
+LIST_TEMPLATE = '''<
+<TABLE ALIGN="CENTER"
+       BORDER="0"
+       CELLBORDER="1"
+       CELLSPACING="0"
+       CELLPADDING="4">
+    <TR>
+<TD COLSPAN="{}">
+<B>{}</B><BR/>
+<FONT POINT-SIZE="8">length: {}</FONT>
+</TD>
+    </TR>
+    <TR>
+{}
+    </TR>
+    <TR>
+{}
+    </TR>
+</TABLE>
+>'''
+
 
 class Scope:
 
@@ -36,31 +57,32 @@ class Scope:
         plt.pause(0.1)
 
     def _getLabelForList(self, data):
-        nodeLabelTemplate = '''<
-<TABLE ALIGN="CENTER"
-       BORDER="0"
-       CELLBORDER="1"
-       CELLSPACING="0"
-       CELLPADDING="4">
-    <TR>
-<TD COLSPAN="{}"><B>{}</B></TD>
-    </TR>
-    <TR>
-{}
-    </TR>
-    <TR>
-{}
-    </TR>
-</TABLE>
->'''
-        cellTemp = '<TD>{}</TD>'
-        indices = [cellTemp.format(self._toStr(i)) for i in range(len(data))]
-        indices = ''.join(indices)
-        values = [cellTemp.format(self._toStr(v)) for v in data]
-        values = ''.join(values)
-        return nodeLabelTemplate.format(len(data), self.title, indices, values)
+        valuesTemp = '<TD>{}</TD>'
+        indicesTemp = '<TD><FONT POINT-SIZE="8">{}</FONT></TD>'
+        indices = [indicesTemp.format("["+self._toStr(i)+"]")
+                   for i in range(len(data))]
+        if len(indices) == 0:
+            indices = [indicesTemp.format(" ")]
+        indices = '\n'.join(indices)
+        values = [valuesTemp.format(self._toStr(v))
+                  for v in data]
+        if len(values) == 0:
+            values = [valuesTemp.format(" ")]
+        values = '\n'.join(values)
+        colspan = max(1, len(data))
+        return LIST_TEMPLATE.format(
+            colspan,
+            self.title,
+            len(data),
+            indices,
+            values
+        )
 
     def _toStr(self, value):
         if isinstance(value, str):
             return '"{}"'.format(value)
         return str(value)
+
+    @staticmethod
+    def wait(secs):
+        plt.pause(secs)

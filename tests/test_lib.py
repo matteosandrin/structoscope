@@ -10,13 +10,16 @@ def test_Scope_getLabelForList_empty():
        CELLSPACING="0"
        CELLPADDING="4">
     <TR>
-<TD COLSPAN="0"><B>TestList</B></TD>
+<TD COLSPAN="1">
+<B>TestList</B><BR/>
+<FONT POINT-SIZE="8">length: 0</FONT>
+</TD>
     </TR>
     <TR>
-
+<TD><FONT POINT-SIZE="8"> </FONT></TD>
     </TR>
     <TR>
-
+<TD> </TD>
     </TR>
 </TABLE>
 >'''
@@ -31,13 +34,20 @@ def test_Scope_getLabelForList_withints():
        CELLSPACING="0"
        CELLPADDING="4">
     <TR>
-<TD COLSPAN="3"><B>TestList</B></TD>
+<TD COLSPAN="3">
+<B>TestList</B><BR/>
+<FONT POINT-SIZE="8">length: 3</FONT>
+</TD>
     </TR>
     <TR>
-<TD>0</TD><TD>1</TD><TD>2</TD>
+<TD><FONT POINT-SIZE="8">[0]</FONT></TD>
+<TD><FONT POINT-SIZE="8">[1]</FONT></TD>
+<TD><FONT POINT-SIZE="8">[2]</FONT></TD>
     </TR>
     <TR>
-<TD>1</TD><TD>2</TD><TD>3</TD>
+<TD>1</TD>
+<TD>2</TD>
+<TD>3</TD>
     </TR>
 </TABLE>
 >'''
@@ -52,13 +62,20 @@ def test_Scope_getLabelForList_withstrings():
        CELLSPACING="0"
        CELLPADDING="4">
     <TR>
-<TD COLSPAN="3"><B>TestList</B></TD>
+<TD COLSPAN="3">
+<B>TestList</B><BR/>
+<FONT POINT-SIZE="8">length: 3</FONT>
+</TD>
     </TR>
     <TR>
-<TD>0</TD><TD>1</TD><TD>2</TD>
+<TD><FONT POINT-SIZE="8">[0]</FONT></TD>
+<TD><FONT POINT-SIZE="8">[1]</FONT></TD>
+<TD><FONT POINT-SIZE="8">[2]</FONT></TD>
     </TR>
     <TR>
-<TD>"a"</TD><TD>"b"</TD><TD>"c"</TD>
+<TD>"a"</TD>
+<TD>"b"</TD>
+<TD>"c"</TD>
     </TR>
 </TABLE>
 >'''
