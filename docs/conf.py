@@ -12,7 +12,16 @@
 #
 import os
 import sys
+from recommonmark.transform import AutoStructify
+
 sys.path.insert(0, os.path.abspath('..'))
+
+
+def setup(app):
+    app.add_config_value('recommonmark_config', {
+        'auto_toc_tree_section': 'Contents',
+    }, True)
+    app.add_transform(AutoStructify)
 
 
 # -- Project information -----------------------------------------------------
@@ -23,6 +32,7 @@ author = 'Matteo Sandrin'
 
 # The full version, including alpha/beta/rc tags
 release = '0.0.1'
+master_doc = 'index'
 
 
 # -- General configuration ---------------------------------------------------
@@ -30,7 +40,9 @@ release = '0.0.1'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx_rtd_theme']
+extensions = ['sphinx.ext.autodoc', 'sphinx_rtd_theme', 'recommonmark']
+
+source_suffix = ['.rst', '.md']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
