@@ -5,6 +5,7 @@ exclude =
     build,
     dist
     structoscope/test.py,
+    docs,
 per-file-ignores =
     # line too long
     setup.py: E501,
