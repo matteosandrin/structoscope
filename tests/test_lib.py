@@ -2,8 +2,8 @@ from structoscope import Scope
 
 
 def test_Scope_getLabelForList_empty():
-    s = Scope()
-    assert s._getLabelForList([], 'TestList') == '''<
+    s = Scope('TestList')
+    assert s._getLabelForList([]) == '''<
 <TABLE ALIGN="CENTER"
        BORDER="0"
        CELLBORDER="1"
@@ -23,8 +23,8 @@ def test_Scope_getLabelForList_empty():
 
 
 def test_Scope_getLabelForList_withints():
-    s = Scope()
-    assert s._getLabelForList([1, 2, 3], 'TestList') == '''<
+    s = Scope('TestList')
+    assert s._getLabelForList([1, 2, 3]) == '''<
 <TABLE ALIGN="CENTER"
        BORDER="0"
        CELLBORDER="1"
@@ -44,8 +44,8 @@ def test_Scope_getLabelForList_withints():
 
 
 def test_Scope_getLabelForList_withstrings():
-    s = Scope()
-    assert s._getLabelForList(['a', 'b', 'c'], 'TestList') == '''<
+    s = Scope('TestList')
+    assert s._getLabelForList(['a', 'b', 'c']) == '''<
 <TABLE ALIGN="CENTER"
        BORDER="0"
        CELLBORDER="1"
@@ -65,7 +65,7 @@ def test_Scope_getLabelForList_withstrings():
 
 
 def test_Scope_toStr_withint():
-    s = Scope()
+    s = Scope("TestList")
     assert s._toStr(0) == '0'
     assert s._toStr(1) == '1'
     assert s._toStr(123) == '123'
@@ -73,7 +73,7 @@ def test_Scope_toStr_withint():
 
 
 def test_Scope_toStr_withstring():
-    s = Scope()
+    s = Scope("TestList")
     assert s._toStr('a') == '"a"'
     assert s._toStr('abc') == '"abc"'
     assert s._toStr('Hello World') == '"Hello World"'

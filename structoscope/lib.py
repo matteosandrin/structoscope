@@ -1,14 +1,17 @@
 from graphviz import Digraph
 import os
-
-
-def echo(arg):
-    return arg
+import io
+from PIL import Image
+import matplotlib.pyplot as plt
 
 
 class Scope:
 
-    def printList(self, data, name):
+    def __init__(self, title):
+        self.fig = None
+        self.title = title
+
+    def printList(self, data):
         if not isinstance(data, list):
             raise ValueError('invalid argument type: {}'.format(type(data)))
 
@@ -16,12 +19,23 @@ class Scope:
 
         graph = Digraph('list_graph',
                         directory=tempFolder,
-                        node_attr={'shape': 'none'})
-        graph.node('node0', self._getLabelForList(data, name))
+                        node_attr={'shape': 'none'},
+                        graph_attr={'dpi': '300'})
+        graph.format = 'svg'
+        graph.node('node0', self._getLabelForList(data))
         graph.edges([])
-        graph.view()
 
-    def _getLabelForList(self, data, name):
+        pngBytes = graph.pipe(format='png')
+        pngImage = Image.open(io.BytesIO(pngBytes))
+
+        if self.fig is None:
+            _, self.fig = plt.subplots(1)
+            self.fig.axis('off')
+        self.fig.imshow(pngImage, aspect='equal')
+        plt.show(block=False)
+        plt.pause(0.1)
+
+    def _getLabelForList(self, data):
         nodeLabelTemplate = '''<
 <TABLE ALIGN="CENTER"
        BORDER="0"
@@ -44,7 +58,7 @@ class Scope:
         indices = ''.join(indices)
         values = [cellTemp.format(self._toStr(v)) for v in data]
         values = ''.join(values)
-        return nodeLabelTemplate.format(len(data), name, indices, values)
+        return nodeLabelTemplate.format(len(data), self.title, indices, values)
 
     def _toStr(self, value):
         if isinstance(value, str):

@@ -4,3 +4,4 @@ build
 dist
 structoscope/test.py
 .vscode
+*.code-workspace
