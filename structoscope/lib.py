@@ -29,12 +29,25 @@ LIST_TEMPLATE = '''<
 
 
 class Scope:
+    """
+    The Scope class is a wrapper around a single visualization window
+
+    :param title: The name of the object to visualize
+    :type title: string
+    """
 
     def __init__(self, title):
         self.fig = None
         self.title = title
 
     def printList(self, data):
+        """
+        Creates a visualization of a Python list
+
+        :param data: The list to visualize
+        :type data: list
+        """
+
         if not isinstance(data, list):
             raise ValueError('invalid argument type: {}'.format(type(data)))
 
@@ -87,4 +100,10 @@ class Scope:
 
     @staticmethod
     def wait(secs):
+        """
+        Block the main thread for any number of seconds
+
+        :param secs: Amount of time to wait for, in seconds
+        :type secs: float
+        """
         plt.pause(secs)
