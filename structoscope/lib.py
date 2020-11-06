@@ -1,8 +1,10 @@
-from graphviz import Digraph
-import os
 import io
-from PIL import Image
+import os
+
 import matplotlib.pyplot as plt
+from graphviz import Digraph
+from PIL import Image
+
 
 LIST_TEMPLATE = '''<
 <TABLE ALIGN="CENTER"
