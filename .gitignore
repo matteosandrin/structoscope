@@ -1,7 +1,8 @@
 *.egg-info
 __pycache__
 build
+docs/_build
 dist
-structoscope/example.py
+example.py
 .vscode
 *.code-workspace
