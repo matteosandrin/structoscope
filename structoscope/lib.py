@@ -72,6 +72,14 @@ class Scope:
         plt.pause(0.1)
 
     def _getLabelForList(self, data):
+        """
+        Creates the label for a single graph node representing a list. This
+        label is formatted as an HTML-like markup language specific to the
+        Graphviz library.
+
+        :param data: The list poplating the label
+        :type data: list
+        """
         valuesTemp = '<TD>{}</TD>'
         indicesTemp = '<TD><FONT POINT-SIZE="8">{}</FONT></TD>'
         indices = [indicesTemp.format("["+self._toStr(i)+"]")
@@ -94,6 +102,12 @@ class Scope:
         )
 
     def _toStr(self, value):
+        """
+        Convert a primitive type a string representation that is suitable for
+        visualization.
+
+        :param value: The value to convert to string
+        """
         if isinstance(value, str):
             return '"{}"'.format(value)
         return str(value)
