@@ -41,6 +41,12 @@ master_doc = 'index'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['sphinx.ext.autodoc', 'sphinx_rtd_theme', 'recommonmark']
+# document private methods
+autodoc_default_options = {
+    "members": True,
+    "undoc-members": True,
+    "private-members": True
+}
 
 source_suffix = ['.rst', '.md']
 
