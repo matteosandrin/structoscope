@@ -12,3 +12,8 @@ Structoscope is a Python library for visualizing and inspecting any data structu
 ### What's up with the name?
 
 I think of it as a *stethoscope* whose purpose is to inspect a `struct`. A Struct-o-scope!
+
+
+### Documentation
+
+You can find the documentation for this project [here](https://structoscope.readthedocs.io/en/latest/).
