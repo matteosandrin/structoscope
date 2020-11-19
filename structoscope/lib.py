@@ -65,18 +65,18 @@ class Scope:
                             'arrowsize': '0.5'
                         })
         graph.format = 'svg'
-        nestedArrays = self._findNestedArrays(data)
-        for i, array in enumerate(nestedArrays):
+        nestedLists = self._findNestedLists(data)
+        for i, llist in enumerate(nestedLists):
             nodeId = 'node{}'.format(i)
             if i == 0:
-                graph.node(nodeId, self._getLabelForList(array, self.title))
+                graph.node(nodeId, self._getLabelForList(llist, self.title))
             else:
-                graph.node(nodeId, self._getLabelForList(array))
-            for j, elem in enumerate(array):
+                graph.node(nodeId, self._getLabelForList(llist))
+            for j, elem in enumerate(llist):
                 if isinstance(elem, list):
                     graph.edge(
                         '{}:{}:c'.format(nodeId, j),
-                        'node{}'.format(nestedArrays.index(elem)),
+                        'node{}'.format(nestedLists.index(elem)),
                     )
         if raw:
             return graph
@@ -89,13 +89,21 @@ class Scope:
         plt.show(block=False)
         plt.pause(0.1)
 
-    def _findNestedArrays(self, data, result=None):
+    def _findNestedLists(self, data, result=None):
+        """
+        Finds every nested array in the supplied data and returns is as a flat,
+        one-dimensional list.
+
+        :param data: The multi-dimensional list
+        :type data: list
+        :param result: The one-dimensional list holding the nested lists
+        """
         if result is None:
             result = []
         if isinstance(data, list):
             result.append(data)
             for d in data:
-                self._findNestedArrays(d, result)
+                self._findNestedLists(d, result)
         return result
 
     def _getLabelForList(self, data, title=None):
