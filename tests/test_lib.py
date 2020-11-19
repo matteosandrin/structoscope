@@ -1,5 +1,5 @@
 from structoscope import Scope
-
+import os.path
 
 def test_Scope_getLabelForList_empty():
     s = Scope('TestList')
@@ -79,6 +79,21 @@ def test_Scope_getLabelForList_withStrings():
     </TR>
 </TABLE>
 >'''
+
+
+def test_Scope_printList_withNestedArray():
+    s = Scope('TestList')
+    testList = [
+        [1,2],
+        [
+            ['a', 'b'],
+            ['c', 'd']
+        ],
+        'abc'
+    ]
+    head, _ = os.path.split(__file__)
+    result = open(os.path.join(head, 'data/printListNested.dot')).read()
+    assert str(s.printList(testList, raw=True)) == result
 
 
 def test_Scope_toStr_withint():

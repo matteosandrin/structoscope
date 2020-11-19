@@ -40,7 +40,7 @@ class Scope:
         self.fig = None
         self.title = title
 
-    def printList(self, data):
+    def printList(self, data, raw=False):
         """
         Creates a visualization of a Python list
 
@@ -75,6 +75,8 @@ class Scope:
                         '{}:{}:c'.format(nodeId, j),
                         'node{}'.format(nestedArrays.index(elem)),
                     )
+        if raw:
+            return graph
         pngBytes = graph.pipe(format='png')
         pngImage = Image.open(io.BytesIO(pngBytes))
         if self.fig is None:
