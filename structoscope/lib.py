@@ -50,7 +50,10 @@ class Scope:
 
         if not isinstance(data, list):
             raise ValueError('invalid argument type: {}'.format(type(data)))
-        tempFolder = os.environ['TMPDIR']
+        try:
+            tempFolder = os.environ['TMPDIR']
+        except Exception:
+            tempFolder = "."
         graph = Digraph('list_graph',
                         directory=tempFolder,
                         node_attr={'shape': 'none'},
