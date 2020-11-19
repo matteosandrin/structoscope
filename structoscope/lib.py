@@ -50,20 +50,34 @@ class Scope:
 
         if not isinstance(data, list):
             raise ValueError('invalid argument type: {}'.format(type(data)))
-
         tempFolder = os.environ['TMPDIR']
-
         graph = Digraph('list_graph',
                         directory=tempFolder,
                         node_attr={'shape': 'none'},
-                        graph_attr={'dpi': '300'})
+                        graph_attr={'dpi': '300'},
+                        edge_attr={
+                            'tailclip': 'false',
+                            'dir': 'both',
+                            'arrowtail': 'dot',
+                            'arrowsize': '0.5'
+                        })
         graph.format = 'svg'
-        graph.node('node0', self._getLabelForList(data))
-        graph.edges([])
-
+        nestedArrays = self._findNestedArrays(data)
+        for i, array in enumerate(nestedArrays):
+            nodeId = 'node{}'.format(i)
+            if i == 0:
+                graph.node(nodeId, self._getLabelForList(array, self.title))
+            else:
+                graph.node(nodeId, self._getLabelForList(array))
+            for j, elem in enumerate(array):
+                if isinstance(elem, list):
+                    graph.edge(
+                        '{}:{}:c'.format(nodeId, j),
+                        'node{}'.format(nestedArrays.index(elem)),
+                    )
+        print(graph)
         pngBytes = graph.pipe(format='png')
         pngImage = Image.open(io.BytesIO(pngBytes))
-
         if self.fig is None:
             _, self.fig = plt.subplots(1)
             self.fig.axis('off')
@@ -71,7 +85,16 @@ class Scope:
         plt.show(block=False)
         plt.pause(0.1)
 
-    def _getLabelForList(self, data):
+    def _findNestedArrays(self, data, result=None):
+        if result is None:
+            result = []
+        if isinstance(data, list):
+            result.append(data)
+            for d in data:
+                self._findNestedArrays(d, result)
+        return result
+
+    def _getLabelForList(self, data, title=None):
         """
         Creates the label for a single graph node representing a list. This
         label is formatted as an HTML-like markup language specific to the
@@ -80,22 +103,22 @@ class Scope:
         :param data: The list poplating the label
         :type data: list
         """
-        valuesTemp = '<TD>{}</TD>'
+        valuesTemp = '<TD PORT="{}">{}</TD>'
         indicesTemp = '<TD><FONT POINT-SIZE="8">{}</FONT></TD>'
         indices = [indicesTemp.format("["+self._toStr(i)+"]")
                    for i in range(len(data))]
         if len(indices) == 0:
             indices = [indicesTemp.format(" ")]
         indices = '\n'.join(indices)
-        values = [valuesTemp.format(self._toStr(v))
-                  for v in data]
+        values = [valuesTemp.format(i, self._toStr(v))
+                  for i, v in enumerate(data)]
         if len(values) == 0:
-            values = [valuesTemp.format(" ")]
+            values = [valuesTemp.format(0, " ")]
         values = '\n'.join(values)
         colspan = max(1, len(data))
         return LIST_TEMPLATE.format(
             colspan,
-            self.title,
+            title if title is not None else "list",
             len(data),
             indices,
             values
@@ -110,6 +133,8 @@ class Scope:
         """
         if isinstance(value, str):
             return '"{}"'.format(value)
+        if isinstance(value, list):
+            return " "
         return str(value)
 
     @staticmethod
