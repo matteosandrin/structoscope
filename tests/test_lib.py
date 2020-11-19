@@ -1,4 +1,5 @@
 from structoscope import Scope
+import pytest
 import os.path
 
 
@@ -80,6 +81,13 @@ def test_Scope_getLabelForList_withStrings():
     </TR>
 </TABLE>
 >'''
+
+
+def test_Scope_printList_withWrongType():
+    s = Scope('TestList')
+    with pytest.raises(ValueError) as e:
+        s.printList('test')
+    assert str(e.value) == 'invalid argument type: <class \'str\'>'
 
 
 def test_Scope_printList_withNestedArray():
