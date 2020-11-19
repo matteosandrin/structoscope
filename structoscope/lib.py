@@ -75,7 +75,6 @@ class Scope:
                         '{}:{}:c'.format(nodeId, j),
                         'node{}'.format(nestedArrays.index(elem)),
                     )
-        print(graph)
         pngBytes = graph.pipe(format='png')
         pngImage = Image.open(io.BytesIO(pngBytes))
         if self.fig is None:
