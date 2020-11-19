@@ -1,6 +1,7 @@
 from structoscope import Scope
 import os.path
 
+
 def test_Scope_getLabelForList_empty():
     s = Scope('TestList')
     assert s._getLabelForList([], 'TestList') == '''<
@@ -84,7 +85,7 @@ def test_Scope_getLabelForList_withStrings():
 def test_Scope_printList_withNestedArray():
     s = Scope('TestList')
     testList = [
-        [1,2],
+        [1, 2],
         [
             ['a', 'b'],
             ['c', 'd']
