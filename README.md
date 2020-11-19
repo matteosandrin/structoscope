@@ -13,7 +13,29 @@ Structoscope is a Python library for visualizing and inspecting any data structu
 
 I think of it as a *stethoscope* whose purpose is to inspect a `struct`. A Struct-o-scope!
 
-
 ### Documentation
 
 You can find the documentation for this project [here](https://structoscope.readthedocs.io/en/latest/).
+
+### Quick Example
+
+This is how you display a list:
+
+#### Input
+```python
+from structoscope import Scope
+
+s = Scope("Test list")
+testList = [
+    [1,2],
+    [
+        ['a', 'b'],
+        ['c', 'd']
+    ],
+    'abc'
+]
+s.printList(testList)
+```
+
+#### Output
+![Example 1](example_01.png)
