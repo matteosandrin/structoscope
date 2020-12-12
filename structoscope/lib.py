@@ -193,7 +193,7 @@ class Scope:
         :type data: dict
         """
 
-        template = '<TR><TD><B>{}</B></TD><TD>{}</TD></TR>'
+        template = '<TR><TD>{}</TD><TD>{}</TD></TR>'
         keyValuePairs = []
         for key in data:
             strKey = self._toStr(key)
