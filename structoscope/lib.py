@@ -27,6 +27,26 @@ LIST_TEMPLATE = '''<
 </TABLE>
 >'''
 
+DICT_TEMPLATE = '''<
+<TABLE ALIGN="CENTER"
+       BORDER="0"
+       CELLBORDER="1"
+       CELLSPACING="0"
+       CELLPADDING="4">
+<TR>
+<TD COLSPAN="2">
+<B>{}</B><BR/>
+<FONT POINT-SIZE="8">length: {}</FONT>
+</TD>
+</TR>
+<TR>
+    <TD><B>key</B></TD>
+    <TD><B>value</B></TD>
+</TR>
+{}
+</TABLE>
+>'''
+
 
 class Scope:
     """
@@ -78,6 +98,36 @@ class Scope:
                         '{}:{}:c'.format(nodeId, j),
                         'node{}'.format(nestedLists.index(elem)),
                     )
+        if raw:
+            return graph
+        self._displayGraph(graph)
+
+    def printDict(self, data, raw=False):
+        """
+        Creates a visualization of a Python dictionary
+
+        :param data: The dictionary to visualize
+        :type data: dict
+        """
+
+        if not isinstance(data, dict):
+            raise ValueError('invalid argument type: {}'.format(type(data)))
+        try:
+            tempFolder = os.environ['TMPDIR']
+        except Exception:
+            tempFolder = "."
+        graph = Digraph('dict_graph',
+                        directory=tempFolder,
+                        node_attr={'shape': 'none'},
+                        graph_attr={'dpi': '300'},
+                        edge_attr={
+                            'tailclip': 'false',
+                            'dir': 'both',
+                            'arrowtail': 'dot',
+                            'arrowsize': '0.5'
+                        })
+        graph.format = 'svg'
+        graph.node('node0', self._getLabelForDict(data, self.title))
         if raw:
             return graph
         self._displayGraph(graph)
@@ -137,6 +187,19 @@ class Scope:
             len(data),
             indices,
             values
+        )
+
+    def _getLabelForDict(self, data, title=None):
+        template = '<TR><TD><B>{}</B></TD><TD>{}</TD></TR>'
+        keyValuePairs = []
+        for key in data:
+            strKey = self._toStr(key)
+            strVal = self._toStr(data[key])
+            keyValuePairs.append(template.format(strKey, strVal)) 
+        return DICT_TEMPLATE.format(
+            title if title is not None else "dict",
+            len(data),
+            "\n".join(keyValuePairs)
         )
 
     def _toStr(self, value):
