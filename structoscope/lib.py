@@ -19,7 +19,7 @@ GENERAL_TEMPLATE = '''<
 LIST_TEMPLATE = GENERAL_TEMPLATE.format('''<TR>
 <TD COLSPAN="{}">
 <B>{}</B><BR/>
-<FONT POINT-SIZE="8">length: {}</FONT>
+<FONT POINT-SIZE="8">length: {}<BR/>type: list</FONT>
 </TD>
     </TR>
     <TR>
@@ -27,21 +27,18 @@ LIST_TEMPLATE = GENERAL_TEMPLATE.format('''<TR>
     </TR>
     <TR>
 {}
-    </TR>
-''')
+    </TR>''')
 
 DICT_TEMPLATE = GENERAL_TEMPLATE.format('''<TR>
 <TD COLSPAN="2">
 <B>{}</B><BR/>
-<FONT POINT-SIZE="8">length: {}</FONT>
+<FONT POINT-SIZE="8">length: {}<BR/>type: dict</FONT>
 </TD>
 </TR>
 <TR>
     <TD><B>key</B></TD>
     <TD><B>value</B></TD>
-</TR>
-{}
-''')
+</TR>{}''')
 
 
 class Scope:

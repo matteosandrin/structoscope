@@ -11,10 +11,10 @@ def test_Scope_getLabelForList_empty():
        CELLBORDER="1"
        CELLSPACING="0"
        CELLPADDING="4">
-    <TR>
+<TR>
 <TD COLSPAN="1">
 <B>TestList</B><BR/>
-<FONT POINT-SIZE="8">length: 0</FONT>
+<FONT POINT-SIZE="8">length: 0<BR/>type: list</FONT>
 </TD>
     </TR>
     <TR>
@@ -35,10 +35,10 @@ def test_Scope_getLabelForList_withInts():
        CELLBORDER="1"
        CELLSPACING="0"
        CELLPADDING="4">
-    <TR>
+<TR>
 <TD COLSPAN="3">
 <B>TestList</B><BR/>
-<FONT POINT-SIZE="8">length: 3</FONT>
+<FONT POINT-SIZE="8">length: 3<BR/>type: list</FONT>
 </TD>
     </TR>
     <TR>
@@ -63,10 +63,10 @@ def test_Scope_getLabelForList_withStrings():
        CELLBORDER="1"
        CELLSPACING="0"
        CELLPADDING="4">
-    <TR>
+<TR>
 <TD COLSPAN="3">
 <B>TestList</B><BR/>
-<FONT POINT-SIZE="8">length: 3</FONT>
+<FONT POINT-SIZE="8">length: 3<BR/>type: list</FONT>
 </TD>
     </TR>
     <TR>
