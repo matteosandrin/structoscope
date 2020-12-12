@@ -4,8 +4,8 @@ import os.path
 
 
 def test_Scope_getLabelForList_empty():
-    s = Scope('TestList')
-    assert s._getLabelForList([], 'TestList') == '''<
+    s = Scope()
+    assert s._getLabelForList([]) == '''<
 <TABLE ALIGN="CENTER"
        BORDER="0"
        CELLBORDER="1"
@@ -13,8 +13,8 @@ def test_Scope_getLabelForList_empty():
        CELLPADDING="4">
 <TR>
 <TD COLSPAN="1">
-<B>TestList</B><BR/>
-<FONT POINT-SIZE="8">length: 0<BR/>type: list</FONT>
+<B>list</B><BR/>
+<FONT POINT-SIZE="8">length: 0</FONT>
 </TD>
     </TR>
     <TR>
@@ -28,8 +28,8 @@ def test_Scope_getLabelForList_empty():
 
 
 def test_Scope_getLabelForList_withInts():
-    s = Scope('TestList')
-    assert s._getLabelForList([1, 2, 3], 'TestList') == '''<
+    s = Scope()
+    assert s._getLabelForList([1, 2, 3]) == '''<
 <TABLE ALIGN="CENTER"
        BORDER="0"
        CELLBORDER="1"
@@ -37,8 +37,8 @@ def test_Scope_getLabelForList_withInts():
        CELLPADDING="4">
 <TR>
 <TD COLSPAN="3">
-<B>TestList</B><BR/>
-<FONT POINT-SIZE="8">length: 3<BR/>type: list</FONT>
+<B>list</B><BR/>
+<FONT POINT-SIZE="8">length: 3</FONT>
 </TD>
     </TR>
     <TR>
@@ -56,8 +56,8 @@ def test_Scope_getLabelForList_withInts():
 
 
 def test_Scope_getLabelForList_withStrings():
-    s = Scope('TestList')
-    assert s._getLabelForList(['a', 'b', 'c'], 'TestList') == '''<
+    s = Scope()
+    assert s._getLabelForList(['a', 'b', 'c']) == '''<
 <TABLE ALIGN="CENTER"
        BORDER="0"
        CELLBORDER="1"
@@ -65,8 +65,8 @@ def test_Scope_getLabelForList_withStrings():
        CELLPADDING="4">
 <TR>
 <TD COLSPAN="3">
-<B>TestList</B><BR/>
-<FONT POINT-SIZE="8">length: 3<BR/>type: list</FONT>
+<B>list</B><BR/>
+<FONT POINT-SIZE="8">length: 3</FONT>
 </TD>
     </TR>
     <TR>
@@ -84,14 +84,14 @@ def test_Scope_getLabelForList_withStrings():
 
 
 def test_Scope_printList_withWrongType():
-    s = Scope('TestList')
+    s = Scope()
     with pytest.raises(ValueError) as e:
         s.printList('test')
     assert str(e.value) == 'invalid argument type: <class \'str\'>'
 
 
 def test_Scope_printList_withNestedArray():
-    s = Scope('TestList')
+    s = Scope()
     testList = [
         [1, 2],
         [
@@ -106,7 +106,7 @@ def test_Scope_printList_withNestedArray():
 
 
 def test_Scope_toStr_withint():
-    s = Scope("TestList")
+    s = Scope()
     assert s._toStr(0) == '0'
     assert s._toStr(1) == '1'
     assert s._toStr(123) == '123'
@@ -114,7 +114,7 @@ def test_Scope_toStr_withint():
 
 
 def test_Scope_toStr_withstring():
-    s = Scope("TestList")
+    s = Scope()
     assert s._toStr('a') == '"a"'
     assert s._toStr('abc') == '"abc"'
     assert s._toStr('Hello World') == '"Hello World"'

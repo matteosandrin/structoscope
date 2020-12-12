@@ -18,8 +18,8 @@ GENERAL_TEMPLATE = '''<
 
 LIST_TEMPLATE = GENERAL_TEMPLATE.format('''<TR>
 <TD COLSPAN="{}">
-<B>{}</B><BR/>
-<FONT POINT-SIZE="8">length: {}<BR/>type: list</FONT>
+<B>list</B><BR/>
+<FONT POINT-SIZE="8">length: {}</FONT>
 </TD>
     </TR>
     <TR>
@@ -31,8 +31,8 @@ LIST_TEMPLATE = GENERAL_TEMPLATE.format('''<TR>
 
 DICT_TEMPLATE = GENERAL_TEMPLATE.format('''<TR>
 <TD COLSPAN="2">
-<B>{}</B><BR/>
-<FONT POINT-SIZE="8">length: {}<BR/>type: dict</FONT>
+<B>dict</B><BR/>
+<FONT POINT-SIZE="8">length: {}</FONT>
 </TD>
 </TR>
 <TR>
@@ -44,14 +44,10 @@ DICT_TEMPLATE = GENERAL_TEMPLATE.format('''<TR>
 class Scope:
     """
     The Scope class is a wrapper around a single visualization window
-
-    :param title: The name of the object to visualize
-    :type title: string
     """
 
-    def __init__(self, title):
+    def __init__(self):
         self.fig = None
-        self.title = title
 
     def printList(self, data, raw=False):
         """
@@ -82,7 +78,7 @@ class Scope:
         for i, llist in enumerate(nestedLists):
             nodeId = 'node{}'.format(i)
             if i == 0:
-                graph.node(nodeId, self._getLabelForList(llist, self.title))
+                graph.node(nodeId, self._getLabelForList(llist))
             else:
                 graph.node(nodeId, self._getLabelForList(llist))
             for j, elem in enumerate(llist):
@@ -120,7 +116,7 @@ class Scope:
                             'arrowsize': '0.5'
                         })
         graph.format = 'svg'
-        graph.node('node0', self._getLabelForDict(data, self.title))
+        graph.node('node0', self._getLabelForDict(data))
         if raw:
             return graph
         self._displayGraph(graph)
@@ -152,7 +148,7 @@ class Scope:
                 self._findNestedLists(d, result)
         return result
 
-    def _getLabelForList(self, data, title=None):
+    def _getLabelForList(self, data):
         """
         Creates the label for a single graph node representing a list. This
         label is formatted as an HTML-like markup language specific to the
@@ -176,13 +172,12 @@ class Scope:
         colspan = max(1, len(data))
         return LIST_TEMPLATE.format(
             colspan,
-            title if title is not None else "list",
             len(data),
             indices,
             values
         )
 
-    def _getLabelForDict(self, data, title=None):
+    def _getLabelForDict(self, data):
         template = '<TR><TD><B>{}</B></TD><TD>{}</TD></TR>'
         keyValuePairs = []
         for key in data:
@@ -190,7 +185,6 @@ class Scope:
             strVal = self._toStr(data[key])
             keyValuePairs.append(template.format(strKey, strVal)) 
         return DICT_TEMPLATE.format(
-            title if title is not None else "dict",
             len(data),
             "\n".join(keyValuePairs)
         )
