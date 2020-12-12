@@ -122,6 +122,12 @@ class Scope:
         self._displayGraph(graph)
 
     def _displayGraph(self, graph):
+        """
+        Converts the graph into a PNG image and displays it a plot
+
+        :param graph: The graph object to display
+        :type graph: graphviz.Digraph
+        """
         pngBytes = graph.pipe(format='png')
         pngImage = Image.open(io.BytesIO(pngBytes))
         if self.fig is None:
@@ -154,7 +160,7 @@ class Scope:
         label is formatted as an HTML-like markup language specific to the
         Graphviz library.
 
-        :param data: The list poplating the label
+        :param data: The list populating the label
         :type data: list
         """
         valuesTemp = '<TD PORT="{}">{}</TD>'
@@ -178,6 +184,15 @@ class Scope:
         )
 
     def _getLabelForDict(self, data):
+        """
+        Creates the label for a single graph node representing a dictionary.
+        This label is formatted as an HTML-like markup language specific to the
+        Graphviz library.
+
+        :param data: The dictionary populating the label
+        :type data: dict
+        """
+
         template = '<TR><TD><B>{}</B></TD><TD>{}</TD></TR>'
         keyValuePairs = []
         for key in data:
