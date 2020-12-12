@@ -83,6 +83,35 @@ def test_Scope_getLabelForList_withStrings():
 >'''
 
 
+def test_Scope_getLabelForDict():
+    s = Scope()
+    assert s._getLabelForDict({
+        'a': 1,
+        'b': 2,
+        'c': 3,
+    }) == '''<
+<TABLE ALIGN="CENTER"
+       BORDER="0"
+       CELLBORDER="1"
+       CELLSPACING="0"
+       CELLPADDING="4">
+<TR>
+<TD COLSPAN="2">
+<B>dict</B><BR/>
+<FONT POINT-SIZE="8">length: 3</FONT>
+</TD>
+</TR>
+<TR>
+    <TD><B>key</B></TD>
+    <TD><B>value</B></TD>
+</TR>
+<TR><TD>"a"</TD><TD>1</TD></TR>
+<TR><TD>"b"</TD><TD>2</TD></TR>
+<TR><TD>"c"</TD><TD>3</TD></TR>
+</TABLE>
+>'''
+
+
 def test_Scope_printList_withWrongType():
     s = Scope()
     with pytest.raises(ValueError) as e:
@@ -103,6 +132,25 @@ def test_Scope_printList_withNestedArray():
     head, _ = os.path.split(__file__)
     result = open(os.path.join(head, 'data/printListNested.dot')).read()
     assert str(s.printList(testList, raw=True)) == result
+
+
+def test_Scope_printDict_withWrongType():
+    s = Scope()
+    with pytest.raises(ValueError) as e:
+        s.printDict('test')
+    assert str(e.value) == 'invalid argument type: <class \'str\'>'
+
+
+def test_Scope_printList_withSimpleDict():
+    s = Scope()
+    testDict = {
+        'a': 1,
+        'b': 2,
+        'c': 3,
+    }
+    head, _ = os.path.split(__file__)
+    result = open(os.path.join(head, 'data/printDictSimple.dot')).read()
+    assert str(s.printDict(testDict, raw=True)) == result
 
 
 def test_Scope_toStr_withint():

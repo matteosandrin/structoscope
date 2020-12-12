@@ -38,7 +38,8 @@ DICT_TEMPLATE = GENERAL_TEMPLATE.format('''<TR>
 <TR>
     <TD><B>key</B></TD>
     <TD><B>value</B></TD>
-</TR>{}''')
+</TR>
+{}''')
 
 
 class Scope:
