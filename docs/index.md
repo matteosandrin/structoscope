@@ -18,13 +18,13 @@ Structoscope is a Python library for visualizing and inspecting any data structu
 The only external dependency is the `graphviz` binary, which you can install buy running the following command in the terminal.  
 
 ```
-$> brew install graphviz
+brew install graphviz
 ```
 
 Now you can install structoscope by running the following command in the terminal.
 
 ```
-$> pip3 install structoscope
+pip3 install structoscope
 ```
 
 ## Examples
@@ -35,7 +35,7 @@ Structoscope can easily display Python lists:
 ```python
 from structoscope import Scope
 
-s = Scope("Test list")
+s = Scope()
 testList = [1,2,3]
 s.printList(testList)
 ```
@@ -49,7 +49,7 @@ It can even display multi-dimensional lists:
 ```python
 from structoscope import Scope
 
-s = Scope("Test list")
+s = Scope()
 testList = [
     [1,2],
     [
@@ -63,3 +63,21 @@ s.printList(testList)
 
 #### Output
 ![Example 2](https://github.com/matteosandrin/structoscope/raw/master/example_02.png)
+
+Or it can display dictionaries:
+
+#### Input
+```python
+from structoscope import Scope
+
+s = Scope()
+testDict = {
+    'first' : 101,
+    'second' : 102,
+    'third' : 103,
+}
+s.printDict(testDict)
+```
+
+#### Output
+![Example 3](https://github.com/matteosandrin/structoscope/raw/master/example_03.png)

@@ -6,15 +6,19 @@ from graphviz import Digraph
 from PIL import Image
 
 
-LIST_TEMPLATE = '''<
+GENERAL_TEMPLATE = '''<
 <TABLE ALIGN="CENTER"
        BORDER="0"
        CELLBORDER="1"
        CELLSPACING="0"
        CELLPADDING="4">
-    <TR>
+{}
+</TABLE>
+>'''
+
+LIST_TEMPLATE = GENERAL_TEMPLATE.format('''<TR>
 <TD COLSPAN="{}">
-<B>{}</B><BR/>
+<B>list</B><BR/>
 <FONT POINT-SIZE="8">length: {}</FONT>
 </TD>
     </TR>
@@ -23,22 +27,28 @@ LIST_TEMPLATE = '''<
     </TR>
     <TR>
 {}
-    </TR>
-</TABLE>
->'''
+    </TR>''')
+
+DICT_TEMPLATE = GENERAL_TEMPLATE.format('''<TR>
+<TD COLSPAN="2">
+<B>dict</B><BR/>
+<FONT POINT-SIZE="8">length: {}</FONT>
+</TD>
+</TR>
+<TR>
+    <TD><B>key</B></TD>
+    <TD><B>value</B></TD>
+</TR>
+{}''')
 
 
 class Scope:
     """
     The Scope class is a wrapper around a single visualization window
-
-    :param title: The name of the object to visualize
-    :type title: string
     """
 
-    def __init__(self, title):
+    def __init__(self):
         self.fig = None
-        self.title = title
 
     def printList(self, data, raw=False):
         """
@@ -69,7 +79,7 @@ class Scope:
         for i, llist in enumerate(nestedLists):
             nodeId = 'node{}'.format(i)
             if i == 0:
-                graph.node(nodeId, self._getLabelForList(llist, self.title))
+                graph.node(nodeId, self._getLabelForList(llist))
             else:
                 graph.node(nodeId, self._getLabelForList(llist))
             for j, elem in enumerate(llist):
@@ -80,6 +90,45 @@ class Scope:
                     )
         if raw:
             return graph
+        self._displayGraph(graph)
+
+    def printDict(self, data, raw=False):
+        """
+        Creates a visualization of a Python dictionary
+
+        :param data: The dictionary to visualize
+        :type data: dict
+        """
+
+        if not isinstance(data, dict):
+            raise ValueError('invalid argument type: {}'.format(type(data)))
+        try:
+            tempFolder = os.environ['TMPDIR']
+        except Exception:
+            tempFolder = "."
+        graph = Digraph('dict_graph',
+                        directory=tempFolder,
+                        node_attr={'shape': 'none'},
+                        graph_attr={'dpi': '300'},
+                        edge_attr={
+                            'tailclip': 'false',
+                            'dir': 'both',
+                            'arrowtail': 'dot',
+                            'arrowsize': '0.5'
+                        })
+        graph.format = 'svg'
+        graph.node('node0', self._getLabelForDict(data))
+        if raw:
+            return graph
+        self._displayGraph(graph)
+
+    def _displayGraph(self, graph):
+        """
+        Converts the graph into a PNG image and displays it a plot
+
+        :param graph: The graph object to display
+        :type graph: graphviz.Digraph
+        """
         pngBytes = graph.pipe(format='png')
         pngImage = Image.open(io.BytesIO(pngBytes))
         if self.fig is None:
@@ -106,13 +155,13 @@ class Scope:
                 self._findNestedLists(d, result)
         return result
 
-    def _getLabelForList(self, data, title=None):
+    def _getLabelForList(self, data):
         """
         Creates the label for a single graph node representing a list. This
         label is formatted as an HTML-like markup language specific to the
         Graphviz library.
 
-        :param data: The list poplating the label
+        :param data: The list populating the label
         :type data: list
         """
         valuesTemp = '<TD PORT="{}">{}</TD>'
@@ -130,10 +179,30 @@ class Scope:
         colspan = max(1, len(data))
         return LIST_TEMPLATE.format(
             colspan,
-            title if title is not None else "list",
             len(data),
             indices,
             values
+        )
+
+    def _getLabelForDict(self, data):
+        """
+        Creates the label for a single graph node representing a dictionary.
+        This label is formatted as an HTML-like markup language specific to the
+        Graphviz library.
+
+        :param data: The dictionary populating the label
+        :type data: dict
+        """
+
+        template = '<TR><TD>{}</TD><TD>{}</TD></TR>'
+        keyValuePairs = []
+        for key in data:
+            strKey = self._toStr(key)
+            strVal = self._toStr(data[key])
+            keyValuePairs.append(template.format(strKey, strVal))
+        return DICT_TEMPLATE.format(
+            len(data),
+            "\n".join(keyValuePairs)
         )
 
     def _toStr(self, value):

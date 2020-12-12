@@ -1,0 +1,26 @@
+digraph dict_graph {
+	graph [dpi=300]
+	node [shape=none]
+	edge [arrowsize=0.5 arrowtail=dot dir=both tailclip=false]
+	node0 [label=<
+<TABLE ALIGN="CENTER"
+       BORDER="0"
+       CELLBORDER="1"
+       CELLSPACING="0"
+       CELLPADDING="4">
+<TR>
+<TD COLSPAN="2">
+<B>dict</B><BR/>
+<FONT POINT-SIZE="8">length: 3</FONT>
+</TD>
+</TR>
+<TR>
+    <TD><B>key</B></TD>
+    <TD><B>value</B></TD>
+</TR>
+<TR><TD>"a"</TD><TD>1</TD></TR>
+<TR><TD>"b"</TD><TD>2</TD></TR>
+<TR><TD>"c"</TD><TD>3</TD></TR>
+</TABLE>
+>]
+}
