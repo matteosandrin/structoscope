@@ -80,6 +80,9 @@ class Scope:
                     )
         if raw:
             return graph
+        self._displayGraph(graph)
+
+    def _displayGraph(self, graph):
         pngBytes = graph.pipe(format='png')
         pngImage = Image.open(io.BytesIO(pngBytes))
         if self.fig is None:
