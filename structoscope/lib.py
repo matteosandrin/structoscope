@@ -6,13 +6,17 @@ from graphviz import Digraph
 from PIL import Image
 
 
-LIST_TEMPLATE = '''<
+GENERAL_TEMPLATE = '''<
 <TABLE ALIGN="CENTER"
        BORDER="0"
        CELLBORDER="1"
        CELLSPACING="0"
        CELLPADDING="4">
-    <TR>
+{}
+</TABLE>
+>'''
+
+LIST_TEMPLATE = GENERAL_TEMPLATE.format('''<TR>
 <TD COLSPAN="{}">
 <B>{}</B><BR/>
 <FONT POINT-SIZE="8">length: {}</FONT>
@@ -24,16 +28,9 @@ LIST_TEMPLATE = '''<
     <TR>
 {}
     </TR>
-</TABLE>
->'''
+''')
 
-DICT_TEMPLATE = '''<
-<TABLE ALIGN="CENTER"
-       BORDER="0"
-       CELLBORDER="1"
-       CELLSPACING="0"
-       CELLPADDING="4">
-<TR>
+DICT_TEMPLATE = GENERAL_TEMPLATE.format('''<TR>
 <TD COLSPAN="2">
 <B>{}</B><BR/>
 <FONT POINT-SIZE="8">length: {}</FONT>
@@ -44,8 +41,7 @@ DICT_TEMPLATE = '''<
     <TD><B>value</B></TD>
 </TR>
 {}
-</TABLE>
->'''
+''')
 
 
 class Scope:
