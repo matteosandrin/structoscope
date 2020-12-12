@@ -198,7 +198,7 @@ class Scope:
         for key in data:
             strKey = self._toStr(key)
             strVal = self._toStr(data[key])
-            keyValuePairs.append(template.format(strKey, strVal)) 
+            keyValuePairs.append(template.format(strKey, strVal))
         return DICT_TEMPLATE.format(
             len(data),
             "\n".join(keyValuePairs)
