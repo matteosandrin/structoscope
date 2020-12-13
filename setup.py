@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setup(
     name='structoscope',
     packages=find_packages(include=['structoscope']),
-    version='0.1.1',
+    version='0.2.0',
     long_description=long_description,
     long_description_content_type="text/markdown",
     description='A Python library for visualizing and inspecting data structures',
