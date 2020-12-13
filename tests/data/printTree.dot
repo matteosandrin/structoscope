@@ -1,0 +1,214 @@
+digraph tree_graph {
+	graph [dpi=300]
+	node [shape=none]
+	edge [arrowsize=0.5 arrowtail=dot dir=both tailclip=false]
+	node0 [label=<
+<TABLE ALIGN="CENTER"
+       BORDER="0"
+       CELLBORDER="1"
+       CELLSPACING="0"
+       CELLPADDING="4">
+<TR>
+<TD COLSPAN="3">
+<B>node</B><BR/>
+<FONT POINT-SIZE="8">children: 3</FONT>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="3">"A"</TD>
+</TR>
+<TR>
+<TD PORT="0"> </TD><TD PORT="1"> </TD><TD PORT="2"> </TD>
+</TR>
+</TABLE>
+>]
+	node0:0:c -> node1
+	node0:1:c -> node4
+	node0:2:c -> node7
+	node1 [label=<
+<TABLE ALIGN="CENTER"
+       BORDER="0"
+       CELLBORDER="1"
+       CELLSPACING="0"
+       CELLPADDING="4">
+<TR>
+<TD COLSPAN="2">
+<B>node</B><BR/>
+<FONT POINT-SIZE="8">children: 2</FONT>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2">"B"</TD>
+</TR>
+<TR>
+<TD PORT="0"> </TD><TD PORT="1"> </TD>
+</TR>
+</TABLE>
+>]
+	node1:0:c -> node2
+	node1:1:c -> node3
+	node2 [label=<
+<TABLE ALIGN="CENTER"
+       BORDER="0"
+       CELLBORDER="1"
+       CELLSPACING="0"
+       CELLPADDING="4">
+<TR>
+<TD COLSPAN="1">
+<B>node</B><BR/>
+<FONT POINT-SIZE="8">children: 0</FONT>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="1">"E"</TD>
+</TR>
+<TR>
+<TD COLSPAN="1">∅</TD>
+</TR>
+</TABLE>
+>]
+	node3 [label=<
+<TABLE ALIGN="CENTER"
+       BORDER="0"
+       CELLBORDER="1"
+       CELLSPACING="0"
+       CELLPADDING="4">
+<TR>
+<TD COLSPAN="1">
+<B>node</B><BR/>
+<FONT POINT-SIZE="8">children: 0</FONT>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="1">"F"</TD>
+</TR>
+<TR>
+<TD COLSPAN="1">∅</TD>
+</TR>
+</TABLE>
+>]
+	node4 [label=<
+<TABLE ALIGN="CENTER"
+       BORDER="0"
+       CELLBORDER="1"
+       CELLSPACING="0"
+       CELLPADDING="4">
+<TR>
+<TD COLSPAN="2">
+<B>node</B><BR/>
+<FONT POINT-SIZE="8">children: 2</FONT>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2">"C"</TD>
+</TR>
+<TR>
+<TD PORT="0"> </TD><TD PORT="1"> </TD>
+</TR>
+</TABLE>
+>]
+	node4:0:c -> node5
+	node4:1:c -> node6
+	node5 [label=<
+<TABLE ALIGN="CENTER"
+       BORDER="0"
+       CELLBORDER="1"
+       CELLSPACING="0"
+       CELLPADDING="4">
+<TR>
+<TD COLSPAN="1">
+<B>node</B><BR/>
+<FONT POINT-SIZE="8">children: 0</FONT>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="1">"G"</TD>
+</TR>
+<TR>
+<TD COLSPAN="1">∅</TD>
+</TR>
+</TABLE>
+>]
+	node6 [label=<
+<TABLE ALIGN="CENTER"
+       BORDER="0"
+       CELLBORDER="1"
+       CELLSPACING="0"
+       CELLPADDING="4">
+<TR>
+<TD COLSPAN="1">
+<B>node</B><BR/>
+<FONT POINT-SIZE="8">children: 0</FONT>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="1">"H"</TD>
+</TR>
+<TR>
+<TD COLSPAN="1">∅</TD>
+</TR>
+</TABLE>
+>]
+	node7 [label=<
+<TABLE ALIGN="CENTER"
+       BORDER="0"
+       CELLBORDER="1"
+       CELLSPACING="0"
+       CELLPADDING="4">
+<TR>
+<TD COLSPAN="2">
+<B>node</B><BR/>
+<FONT POINT-SIZE="8">children: 2</FONT>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2">"D"</TD>
+</TR>
+<TR>
+<TD PORT="0"> </TD><TD PORT="1"> </TD>
+</TR>
+</TABLE>
+>]
+	node7:0:c -> node8
+	node7:1:c -> node9
+	node8 [label=<
+<TABLE ALIGN="CENTER"
+       BORDER="0"
+       CELLBORDER="1"
+       CELLSPACING="0"
+       CELLPADDING="4">
+<TR>
+<TD COLSPAN="1">
+<B>node</B><BR/>
+<FONT POINT-SIZE="8">children: 0</FONT>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="1">"I"</TD>
+</TR>
+<TR>
+<TD COLSPAN="1">∅</TD>
+</TR>
+</TABLE>
+>]
+	node9 [label=<
+<TABLE ALIGN="CENTER"
+       BORDER="0"
+       CELLBORDER="1"
+       CELLSPACING="0"
+       CELLPADDING="4">
+<TR>
+<TD COLSPAN="1">
+<B>node</B><BR/>
+<FONT POINT-SIZE="8">children: 0</FONT>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="1">"J"</TD>
+</TR>
+<TR>
+<TD COLSPAN="1">∅</TD>
+</TR>
+</TABLE>
+>]
+}
