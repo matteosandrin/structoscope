@@ -146,7 +146,7 @@ class Scope:
 
     def printTree(self, data, raw=False):
         """
-        Creates a visualization of a Python dictionary
+        Creates a visualization of a tree
 
         :param data: The root object of the tree to visualize
         :type data: Object
@@ -214,6 +214,14 @@ class Scope:
         return result
 
     def _findChildren(self, data, result=None):
+        """
+        Finds every node in the supplied tree and returns is as a flat,
+        one-dimensional list.
+
+        :param data: The root of the tree
+        :type data: Object
+        :param result: The one-dimensional list holding the nodes
+        """
         if result is None:
             result = []
         if data is None:
@@ -274,6 +282,15 @@ class Scope:
         )
 
     def _getLabelForNode(self, data):
+        """
+        Creates the label for a single graph node representing the node of a tree.
+        This label is formatted as an HTML-like markup language specific to the
+        Graphviz library.
+
+        :param data: The node populating the label
+        :type data: Object
+        """
+
         portTemp = '<TD PORT="{}"> </TD>'
         children = getattr(data, self.members['children'])
         value = getattr(data, self.members['data'])
