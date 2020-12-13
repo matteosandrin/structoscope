@@ -283,9 +283,9 @@ class Scope:
 
     def _getLabelForNode(self, data):
         """
-        Creates the label for a single graph node representing the node of a tree.
-        This label is formatted as an HTML-like markup language specific to the
-        Graphviz library.
+        Creates the label for a single graph node representing the node of a
+        tree. This label is formatted as an HTML-like markup language specific
+        to the Graphviz library.
 
         :param data: The node populating the label
         :type data: Object
