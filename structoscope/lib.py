@@ -10,17 +10,16 @@ from .stree import Tree
 class Scope:
     """
     The Scope class is a wrapper around a single visualization window
+    
+    :param childMemberName: The name of the member containing the data of
+                            the node object
+    :type dataMemberName: str
+    :param childrenMemberName: The name of the member containing the
+                               children of the node object
+    :type childrenMemberName: str
     """
 
     def __init__(self, dataMemberName=None, childrenMemberName=None):
-        """
-        :param childMemberName: The name of the member containing the data of
-        the node object
-        :type dataMemberName: str
-        :param childrenMemberName: The name of the member containing the
-        children of the node object
-        :type childrenMemberName: str
-        """
         self.fig = None
         self.members = {
             'children': childrenMemberName,
@@ -28,6 +27,16 @@ class Scope:
         }
 
     def print(self, data, raw=False):
+        """
+        Display a visualization of an arbitrary Python object.
+        Supports lists, dictionaries and trees.
+
+        :param data: The object to visualize
+        :type data: Object
+        :param raw: If true returns a string representing the
+                    dot-notation graph
+        :type raw: bool
+        """
 
         graph = None
         if isinstance(data, list):
