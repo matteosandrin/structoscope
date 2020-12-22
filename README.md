@@ -33,7 +33,7 @@ from structoscope import Scope
 
 s = Scope()
 testList = [1,2,3]
-s.printList(testList)
+s.print(testList)
 ```
 
 #### Output
@@ -54,7 +54,7 @@ testList = [
     ],
     'abc'
 ]
-s.printList(testList)
+s.print(testList)
 ```
 
 #### Output
@@ -72,7 +72,7 @@ testDict = {
     'second' : 102,
     'third' : 103,
 }
-s.printDict(testDict)
+s.print(testDict)
 ```
 
 #### Output
@@ -105,7 +105,7 @@ node2 = Node(val='C', children=[node6, node7])
 node1 = Node(val='B', children=[node4, node5])
 root = Node(val='A', children=[node1, node2, node3])
 
-s.printTree(root)
+s.print(root)
 ```
 
 #### Output
