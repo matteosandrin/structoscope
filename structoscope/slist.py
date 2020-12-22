@@ -2,6 +2,7 @@ from .templates import LIST_TEMPLATE
 from graphviz import Digraph
 import os
 
+
 class List:
 
     def makeGraph(self, data):
@@ -57,7 +58,7 @@ class List:
             for d in data:
                 self._findNestedLists(d, result)
         return result
-    
+
     def _getLabelForList(self, data):
         """
         Creates the label for a single graph node representing a list. This
@@ -75,7 +76,7 @@ class List:
             indices = [indicesTemp.format(" ")]
         indices = '\n'.join(indices)
         values = [valuesTemp.format(
-                      i, repr(v) if not isinstance(v, list) else ""
+                      i, repr(v) if not isinstance(v, list) else " "
                   )
                   for i, v in enumerate(data)]
         if len(values) == 0:

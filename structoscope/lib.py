@@ -27,7 +27,7 @@ class Scope:
             'data': dataMemberName
         }
 
-    def print(self, data):
+    def print(self, data, raw=False):
 
         graph = None
         if isinstance(data, list):
@@ -39,6 +39,8 @@ class Scope:
         else:
             s = Tree(self.members)
             graph = s.makeGraph(data)
+        if raw:
+            return graph
         self._displayGraph(graph)
 
     def _displayGraph(self, graph):
