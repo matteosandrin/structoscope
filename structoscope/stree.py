@@ -56,8 +56,9 @@ class Tree:
         if data is None:
             return
         result.append(data)
-        for child in getattr(data, self.members['children']):
-            self._findChildren(child, result)
+        if hasattr(data, self.members['children']):
+            for child in getattr(data, self.members['children']):
+                self._findChildren(child, result)
         return result
 
     def _getLabelForNode(self, data):
