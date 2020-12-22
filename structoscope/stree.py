@@ -1,26 +1,16 @@
-from lib import GENERAL_TEMPLATE
+from .templates import NODE_TEMPLATE
 from graphviz import Digraph
 import os
-
-NODE_TEMPLATE = GENERAL_TEMPLATE.format('''<TR>
-<TD COLSPAN="{}">
-<B>node</B><BR/>
-<FONT POINT-SIZE="8">children: {}</FONT>
-</TD>
-</TR>
-<TR>
-<TD COLSPAN="{}">{}</TD>
-</TR>
-<TR>
-{}
-</TR>''')
 
 
 class Tree:
 
-    def printTree(self, data, raw=False):
+    def __init__(self, members):
+        self.members = members
+
+    def makeGraph(self, data):
         """
-        Creates a visualization of a tree
+        Creates a graph to visualize a tree
 
         :param data: The root object of the tree to visualize
         :type data: Object
@@ -50,9 +40,7 @@ class Tree:
                     '{}:{}:c'.format(nodeId, j),
                     'node{}'.format(children.index(elem)),
                 )
-        if raw:
-            return graph
-        self._displayGraph(graph)
+        return graph
 
     def _findChildren(self, data, result=None):
         """
@@ -93,6 +81,6 @@ class Tree:
             colspan,
             len(children),
             colspan,
-            self._toStr(value),
+            repr(value),
             ''.join(ports)
         )

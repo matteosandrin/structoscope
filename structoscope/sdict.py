@@ -1,25 +1,13 @@
-from lib import GENERAL_TEMPLATE
+from .templates import DICT_TEMPLATE
 from graphviz import Digraph
 import os
-
-DICT_TEMPLATE = GENERAL_TEMPLATE.format('''<TR>
-<TD COLSPAN="2">
-<B>dict</B><BR/>
-<FONT POINT-SIZE="8">length: {}</FONT>
-</TD>
-</TR>
-<TR>
-    <TD><B>key</B></TD>
-    <TD><B>value</B></TD>
-</TR>
-{}''')
 
 
 class Dict:
 
-    def printDict(self, data, raw=False):
+    def makeGraph(self, data):
         """
-        Creates a visualization of a Python dictionary
+        Creates a graph to visualize of a Python dictionary
 
         :param data: The dictionary to visualize
         :type data: dict
@@ -43,9 +31,7 @@ class Dict:
                         })
         graph.format = 'svg'
         graph.node('node0', self._getLabelForDict(data))
-        if raw:
-            return graph
-        self._displayGraph(graph)
+        return graph
 
     def _getLabelForDict(self, data):
         """
@@ -60,8 +46,8 @@ class Dict:
         template = '<TR><TD>{}</TD><TD>{}</TD></TR>'
         keyValuePairs = []
         for key in data:
-            strKey = self._toStr(key)
-            strVal = self._toStr(data[key])
+            strKey = repr(key)
+            strVal = repr(data[key])
             keyValuePairs.append(template.format(strKey, strVal))
         return DICT_TEMPLATE.format(
             len(data),

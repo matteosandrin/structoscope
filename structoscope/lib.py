@@ -1,20 +1,10 @@
 import io
-import os
-
 import matplotlib.pyplot as plt
-from graphviz import Digraph
 from PIL import Image
 
-
-GENERAL_TEMPLATE = '''<
-<TABLE ALIGN="CENTER"
-       BORDER="0"
-       CELLBORDER="1"
-       CELLSPACING="0"
-       CELLPADDING="4">
-{}
-</TABLE>
->'''
+from .slist import List
+from .sdict import Dict
+from .stree import Tree
 
 
 class Scope:
@@ -37,9 +27,23 @@ class Scope:
             'data': dataMemberName
         }
 
+    def print(self, data):
+
+        graph = None
+        if isinstance(data, list):
+            s = List()
+            graph = s.makeGraph(data)
+        elif isinstance(data, dict):
+            s = Dict()
+            graph = s.makeGraph(data)
+        else:
+            s = Tree(self.members)
+            graph = s.makeGraph(data)
+        self._displayGraph(graph)
+
     def _displayGraph(self, graph):
         """
-        Converts the graph into a PNG image and displays it a plot
+        Converts the graph into a PNG image and displays it as a plot
 
         :param graph: The graph object to display
         :type graph: graphviz.Digraph
@@ -52,19 +56,6 @@ class Scope:
         self.fig.imshow(pngImage, aspect='equal')
         plt.show(block=False)
         plt.pause(0.1)
-
-    def _toStr(self, value):
-        """
-        Convert a primitive type a string representation that is suitable for
-        visualization.
-
-        :param value: The value to convert to string
-        """
-        if isinstance(value, str):
-            return '"{}"'.format(value)
-        if isinstance(value, list):
-            return " "
-        return str(value)
 
     @staticmethod
     def wait(secs):

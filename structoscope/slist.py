@@ -1,25 +1,12 @@
-from lib import GENERAL_TEMPLATE
+from .templates import LIST_TEMPLATE
 from graphviz import Digraph
 import os
 
-LIST_TEMPLATE = GENERAL_TEMPLATE.format('''<TR>
-<TD COLSPAN="{}">
-<B>list</B><BR/>
-<FONT POINT-SIZE="8">length: {}</FONT>
-</TD>
-    </TR>
-    <TR>
-{}
-    </TR>
-    <TR>
-{}
-    </TR>''')
-
 class List:
 
-    def printList(self, data, raw=False):
+    def makeGraph(self, data):
         """
-        Creates a visualization of a Python list
+        Creates a graph to visualize a Python list
 
         :param data: The list to visualize
         :type data: list
@@ -52,9 +39,7 @@ class List:
                         '{}:{}:c'.format(nodeId, j),
                         'node{}'.format(nestedLists.index(elem)),
                     )
-        if raw:
-            return graph
-        self._displayGraph(graph)
+        return graph
 
     def _findNestedLists(self, data, result=None):
         """
@@ -84,12 +69,14 @@ class List:
         """
         valuesTemp = '<TD PORT="{}">{}</TD>'
         indicesTemp = '<TD><FONT POINT-SIZE="8">{}</FONT></TD>'
-        indices = [indicesTemp.format("["+self._toStr(i)+"]")
+        indices = [indicesTemp.format("["+repr(i)+"]")
                    for i in range(len(data))]
         if len(indices) == 0:
             indices = [indicesTemp.format(" ")]
         indices = '\n'.join(indices)
-        values = [valuesTemp.format(i, self._toStr(v))
+        values = [valuesTemp.format(
+                      i, repr(v) if not isinstance(v, list) else ""
+                  )
                   for i, v in enumerate(data)]
         if len(values) == 0:
             values = [valuesTemp.format(0, " ")]
