@@ -10,7 +10,7 @@ from .stree import Tree
 class Scope:
     """
     The Scope class is a wrapper around a single visualization window
-    
+
     :param childMemberName: The name of the member containing the data of
                             the node object
     :type dataMemberName: str
