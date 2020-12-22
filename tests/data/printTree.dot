@@ -15,7 +15,7 @@ digraph tree_graph {
 </TD>
 </TR>
 <TR>
-<TD COLSPAN="3">"A"</TD>
+<TD COLSPAN="3">'A'</TD>
 </TR>
 <TR>
 <TD PORT="0"> </TD><TD PORT="1"> </TD><TD PORT="2"> </TD>
@@ -38,7 +38,7 @@ digraph tree_graph {
 </TD>
 </TR>
 <TR>
-<TD COLSPAN="2">"B"</TD>
+<TD COLSPAN="2">'B'</TD>
 </TR>
 <TR>
 <TD PORT="0"> </TD><TD PORT="1"> </TD>
@@ -60,7 +60,7 @@ digraph tree_graph {
 </TD>
 </TR>
 <TR>
-<TD COLSPAN="1">"E"</TD>
+<TD COLSPAN="1">'E'</TD>
 </TR>
 <TR>
 <TD COLSPAN="1">∅</TD>
@@ -80,7 +80,7 @@ digraph tree_graph {
 </TD>
 </TR>
 <TR>
-<TD COLSPAN="1">"F"</TD>
+<TD COLSPAN="1">'F'</TD>
 </TR>
 <TR>
 <TD COLSPAN="1">∅</TD>
@@ -100,7 +100,7 @@ digraph tree_graph {
 </TD>
 </TR>
 <TR>
-<TD COLSPAN="2">"C"</TD>
+<TD COLSPAN="2">'C'</TD>
 </TR>
 <TR>
 <TD PORT="0"> </TD><TD PORT="1"> </TD>
@@ -122,7 +122,7 @@ digraph tree_graph {
 </TD>
 </TR>
 <TR>
-<TD COLSPAN="1">"G"</TD>
+<TD COLSPAN="1">'G'</TD>
 </TR>
 <TR>
 <TD COLSPAN="1">∅</TD>
@@ -142,7 +142,7 @@ digraph tree_graph {
 </TD>
 </TR>
 <TR>
-<TD COLSPAN="1">"H"</TD>
+<TD COLSPAN="1">'H'</TD>
 </TR>
 <TR>
 <TD COLSPAN="1">∅</TD>
@@ -162,7 +162,7 @@ digraph tree_graph {
 </TD>
 </TR>
 <TR>
-<TD COLSPAN="2">"D"</TD>
+<TD COLSPAN="2">'D'</TD>
 </TR>
 <TR>
 <TD PORT="0"> </TD><TD PORT="1"> </TD>
@@ -184,7 +184,7 @@ digraph tree_graph {
 </TD>
 </TR>
 <TR>
-<TD COLSPAN="1">"I"</TD>
+<TD COLSPAN="1">'I'</TD>
 </TR>
 <TR>
 <TD COLSPAN="1">∅</TD>
@@ -204,7 +204,7 @@ digraph tree_graph {
 </TD>
 </TR>
 <TR>
-<TD COLSPAN="1">"J"</TD>
+<TD COLSPAN="1">'J'</TD>
 </TR>
 <TR>
 <TD COLSPAN="1">∅</TD>

@@ -18,9 +18,9 @@ digraph dict_graph {
     <TD><B>key</B></TD>
     <TD><B>value</B></TD>
 </TR>
-<TR><TD>"a"</TD><TD>1</TD></TR>
-<TR><TD>"b"</TD><TD>2</TD></TR>
-<TR><TD>"c"</TD><TD>3</TD></TR>
+<TR><TD>'a'</TD><TD>1</TD></TR>
+<TR><TD>'b'</TD><TD>2</TD></TR>
+<TR><TD>'c'</TD><TD>3</TD></TR>
 </TABLE>
 >]
 }

@@ -29,23 +29,25 @@ pip3 install structoscope
 
 ## Examples
 
+### Lists
+
 Structoscope can easily display Python lists:
 
-#### Input
 ```python
 from structoscope import Scope
 
 s = Scope()
 testList = [1,2,3]
-s.printList(testList)
+s.print(testList)
+input() # block the main thread
 ```
 
-#### Output
-![Example 1](https://github.com/matteosandrin/structoscope/raw/master/example_01.png)
+![Example 1](https://raw.githubusercontent.com/matteosandrin/structoscope/master/example_01.png)
+
+### Multi-dimensional Lists
 
 It can even display multi-dimensional lists:
 
-#### Input
 ```python
 from structoscope import Scope
 
@@ -58,15 +60,16 @@ testList = [
     ],
     'abc'
 ]
-s.printList(testList)
+s.print(testList)
+input() # block the main thread
 ```
 
-#### Output
-![Example 2](https://github.com/matteosandrin/structoscope/raw/master/example_02.png)
+![Example 2](https://raw.githubusercontent.com/matteosandrin/structoscope/master/example_02.png)
+
+### Dictionaries
 
 Or it can display dictionaries:
 
-#### Input
 ```python
 from structoscope import Scope
 
@@ -76,15 +79,16 @@ testDict = {
     'second' : 102,
     'third' : 103,
 }
-s.printDict(testDict)
+s.print(testDict)
+input() # block the main thread
 ```
 
-#### Output
-![Example 3](https://github.com/matteosandrin/structoscope/raw/master/example_03.png)
+![Example 3](https://raw.githubusercontent.com/matteosandrin/structoscope/master/example_03.png)
+
+### Trees
 
 It can even display trees:
 
-#### Input
 ```python
 from structoscope import Scope
 
@@ -109,8 +113,8 @@ node2 = Node(val='C', children=[node6, node7])
 node1 = Node(val='B', children=[node4, node5])
 root = Node(val='A', children=[node1, node2, node3])
 
-s.printTree(root)
+s.print(root)
+input() # block the main thread
 ```
 
-#### Output
-![Example 4](https://github.com/matteosandrin/structoscope/raw/master/example_04.png)
+![Example 4](https://raw.githubusercontent.com/matteosandrin/structoscope/master/example_04.png)

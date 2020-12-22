@@ -22,7 +22,7 @@ digraph list_graph {
     <TR>
 <TD PORT="0"> </TD>
 <TD PORT="1"> </TD>
-<TD PORT="2">"abc"</TD>
+<TD PORT="2">'abc'</TD>
     </TR>
 </TABLE>
 >]
@@ -91,8 +91,8 @@ digraph list_graph {
 <TD><FONT POINT-SIZE="8">[1]</FONT></TD>
     </TR>
     <TR>
-<TD PORT="0">"a"</TD>
-<TD PORT="1">"b"</TD>
+<TD PORT="0">'a'</TD>
+<TD PORT="1">'b'</TD>
     </TR>
 </TABLE>
 >]
@@ -113,8 +113,8 @@ digraph list_graph {
 <TD><FONT POINT-SIZE="8">[1]</FONT></TD>
     </TR>
     <TR>
-<TD PORT="0">"c"</TD>
-<TD PORT="1">"d"</TD>
+<TD PORT="0">'c'</TD>
+<TD PORT="1">'d'</TD>
     </TR>
 </TABLE>
 >]
